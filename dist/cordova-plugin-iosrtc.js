@@ -151,13 +151,13 @@ function newMediaStreamId() {
 var originalMediaStream = window.MediaStream;
 // Added 2019-10-08 by ROGDEV\Manfred:
 if (typeof originalMediaStream === "undefined") {
-	originalMediaStream = new MediaStream(null, 0);
+	originalMediaStream = {};
 	
 }
 var originalMediaStreamTrack = MediaStreamTrack.originalMediaStreamTrack;
 // Added 2019-10-08 by ROGDEV\Manfred:
 if (typeof originalMediaStreamTrack === "undefined") {
-	originalMediaStreamTrack = new MediaStreamTrack(null);
+	originalMediaStreamTrack = {};
 	
 }
 /**
