@@ -368,9 +368,9 @@ MediaStream.prototype.getTrackById = function (id) {
 MediaStream.prototype.addTrack = function (track) {
 	debug('addTrack() [track:%o]', track);
 
-	if (!(track instanceof MediaStreamTrack)) {
-		throw new Error('argument must be an instance of MediaStreamTrack');
-	}
+	//if (!(track instanceof MediaStreamTrack)) {
+	//	throw new Error('argument must be an instance of MediaStreamTrack');
+	//}
 
 	if (this._audioTracks[track.id] || this._videoTracks[track.id]) {
 		return;
@@ -393,9 +393,9 @@ MediaStream.prototype.addTrack = function (track) {
 MediaStream.prototype.removeTrack = function (track) {
 	debug('removeTrack() [track:%o]', track);
 
-	if (!(track instanceof MediaStreamTrack)) {
-		throw new Error('argument must be an instance of MediaStreamTrack');
-	}
+	//if (!(track instanceof MediaStreamTrack)) {
+	//	throw new Error('argument must be an instance of MediaStreamTrack');
+	//}
 
 	if (!this._audioTracks[track.id] && !this._videoTracks[track.id]) {
 		return;
@@ -647,10 +647,10 @@ MediaStreamRenderer.prototype.render = function (stream) {
 
 	var self = this;
 
-	if (!(stream instanceof MediaStream)) {
-		// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
-		throw new Error('render() requires a MediaStream instance as argument');
-	}
+	//if (!(stream instanceof MediaStream)) {
+	//	// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
+	//	throw new Error('render() requires a MediaStream instance as argument');
+	//}
 
 	this.stream = stream;
 
@@ -1933,9 +1933,9 @@ RTCPeerConnection.prototype.addTrack = function (track, stream) {
 	// Fix webrtc-adapter bad SHIM on addStream
 	if (stream) {
 		// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
-		if (!(stream instanceof MediaStream)) {
-			throw new Error('addTrack() must be called with a MediaStream instance as argument');
-		}
+		// if (!(stream instanceof MediaStream)) {
+		// 	throw new Error('addTrack() must be called with a MediaStream instance as argument');
+		// }
 
 		if (!this.localStreams[stream.id]) {
 			this.localStreams[stream.id] = stream;
@@ -1997,9 +1997,9 @@ RTCPeerConnection.prototype.addStream = function (stream) {
 	debug('addStream()');
 
 	// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
-	if (!(stream instanceof MediaStream)) {
-		throw new Error('addStream() must be called with a MediaStream instance as argument');
-	}
+	// if (!(stream instanceof MediaStream)) {
+	// 	throw new Error('addStream() must be called with a MediaStream instance as argument');
+	// }
 
 	if (this.localStreams[stream.id]) {
 		debugerror('addStream() | given stream already in present in local streams');
@@ -2020,9 +2020,9 @@ RTCPeerConnection.prototype.removeStream = function (stream) {
 	debug('removeStream()');
 
 // 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
-if (!(stream instanceof MediaStream)) {
-		throw new Error('removeStream() must be called with a MediaStream instance as argument');
-	}
+// if (!(stream instanceof MediaStream)) {
+// 		throw new Error('removeStream() must be called with a MediaStream instance as argument');
+// 	}
 
 	if (!this.localStreams[stream.id]) {
 		debugerror('removeStream() | given stream not present in local streams');
@@ -2064,9 +2064,9 @@ RTCPeerConnection.prototype.getStats = function (selector) {
 
 	var self = this;
 
-	if (selector && !(selector instanceof MediaStreamTrack)) {
-		throw new Error('getStats() must be called with null or a valid MediaStreamTrack instance as argument');
-	}
+	// if (selector && !(selector instanceof MediaStreamTrack)) {
+	// 	throw new Error('getStats() must be called with null or a valid MediaStreamTrack instance as argument');
+	// }
 
 	if (isClosed.call(this)) {
 		throw new Errors.InvalidStateError('peerconnection is closed');
