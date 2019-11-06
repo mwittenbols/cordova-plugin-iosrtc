@@ -647,7 +647,8 @@ MediaStreamRenderer.prototype.render = function (stream) {
 
 	var self = this;
 
-	if (!(stream instanceof MediaStream.originalMediaStream)) {
+	if (!(stream instanceof MediaStream)) {
+		// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
 		throw new Error('render() requires a MediaStream instance as argument');
 	}
 
@@ -1931,7 +1932,8 @@ RTCPeerConnection.prototype.addTrack = function (track, stream) {
 
 	// Fix webrtc-adapter bad SHIM on addStream
 	if (stream) {
-		if (!(stream instanceof MediaStream.originalMediaStream)) {
+		// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
+		if (!(stream instanceof MediaStream)) {
 			throw new Error('addTrack() must be called with a MediaStream instance as argument');
 		}
 
@@ -1994,7 +1996,8 @@ RTCPeerConnection.prototype.addStream = function (stream) {
 
 	debug('addStream()');
 
-	if (!(stream instanceof MediaStream.originalMediaStream)) {
+	// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
+	if (!(stream instanceof MediaStream)) {
 		throw new Error('addStream() must be called with a MediaStream instance as argument');
 	}
 
@@ -2016,7 +2019,8 @@ RTCPeerConnection.prototype.removeStream = function (stream) {
 
 	debug('removeStream()');
 
-	if (!(stream instanceof MediaStream.originalMediaStream)) {
+// 2019-11-04 by ROGDEV: originalStream is not even a type! removed: .originalMediaStream
+if (!(stream instanceof MediaStream)) {
 		throw new Error('removeStream() must be called with a MediaStream instance as argument');
 	}
 
