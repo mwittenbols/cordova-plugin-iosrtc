@@ -20,6 +20,12 @@ var
 
 // Save original MediaStreamTrack
 var originalMediaStreamTrack = window.MediaStreamTrack;
+if (typeof originalMediaStreamTrack === "undefined") {
+	originalMediaStreamTrack = function () {
+		return { "dummy": "dummy"};
+	};
+	
+}
 
 function MediaStreamTrack(dataFromEvent) {
 	debug('new() | [dataFromEvent:%o]', dataFromEvent);

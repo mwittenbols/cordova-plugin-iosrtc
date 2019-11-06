@@ -149,8 +149,21 @@ function newMediaStreamId() {
 
 // Save original MediaStream
 var originalMediaStream = window.MediaStream;
+// Added 2019-10-08 by ROGDEV\Manfred:
+if (typeof originalMediaStream === "undefined") {
+	originalMediaStream = function () {
+		return { "dummy": "dummy"};
+	};
+	
+}
 var originalMediaStreamTrack = MediaStreamTrack.originalMediaStreamTrack;
-
+// Added 2019-10-08 by ROGDEV\Manfred:
+if (typeof originalMediaStreamTrack === "undefined") {
+	originalMediaStreamTrack = function () {
+		return { "dummy": "dummy"};
+	};
+	
+}
 /**
  * Expose the MediaStream class.
  */
@@ -1000,6 +1013,13 @@ var
 
 // Save original MediaStreamTrack
 var originalMediaStreamTrack = window.MediaStreamTrack;
+// Added 2019-10-08 by ROGDEV\Manfred:
+if (typeof originalMediaStreamTrack === "undefined") {
+	originalMediaStreamTrack = function () {
+		return { "dummy": "dummy"};
+	};
+	
+}
 
 function MediaStreamTrack(dataFromEvent) {
 	debug('new() | [dataFromEvent:%o]', dataFromEvent);
