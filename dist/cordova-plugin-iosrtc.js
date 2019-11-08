@@ -471,7 +471,7 @@
 
                     //HACK 2019-11-07 by ROGDEV:
                     if (typeof self.dispatchEvent === "undefined") {
-						Object.defineProperties(self.prototype, Object.getOwnPropertyDescriptors(EventTarget.prototype));
+						//Object.defineProperties(self.prototype, Object.getOwnPropertyDescriptors(EventTarget.prototype));
 						self.dispatchEvent = yaetiEventTarget.prototype.dispatchEvent;
                     }
 
