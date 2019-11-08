@@ -154,12 +154,16 @@
             var originalMediaStream = window.MediaStream;
             // Added 2019-10-08 by ROGDEV\Manfred:
             if (typeof originalMediaStream === "undefined") {
+				var
+				YaetiEventTarget = _dereq_('yaeti').EventTarget;
                 originalMediaStream = function () { YaetiEventTarget.call(this); };
 
             }
             var originalMediaStreamTrack = MediaStreamTrack.originalMediaStreamTrack;
             // Added 2019-10-08 by ROGDEV\Manfred:
             if (typeof originalMediaStreamTrack === "undefined") {
+				var
+				YaetiEventTarget = _dereq_('yaeti').EventTarget;
                 originalMediaStreamTrack = function () { YaetiEventTarget.call(this); };
 
             }
@@ -467,7 +471,8 @@
 
                     //HACK 2019-11-07 by ROGDEV:
                     if (typeof self.dispatchEvent === "undefined") {
-                        Object.defineProperties(self.prototype, Object.getOwnPropertyDescriptors(EventTarget.prototype));
+						Object.defineProperties(self.prototype, Object.getOwnPropertyDescriptors(EventTarget.prototype));
+						self.dispatchEvent = yaetiEventTarget.prototype.dispatchEvent;
                     }
 
                     self.dispatchEvent(event);
@@ -1021,7 +1026,9 @@
             var originalMediaStreamTrack = window.MediaStreamTrack;
             // Added 2019-10-08 by ROGDEV\Manfred:
             if (typeof originalMediaStreamTrack === "undefined") {
-                originalMediaStreamTrack = function () {
+				var
+				YaetiEventTarget = _dereq_('yaeti').EventTarget;
+				originalMediaStreamTrack = function () {
                     YaetiEventTarget.call(this);
                 };
 
