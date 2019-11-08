@@ -468,8 +468,13 @@
 
                     //HACK 2019-11-07 by ROGDEV:
                     if (typeof self.dispatchEvent === "undefined") {
-						window.alert('self.dispatchEvent does not exist');
-                    } else {
+						console.log('ERROR!! self.dispatchEvent does not exist');
+						try {
+							self.getVideoTracks()[0].dispatchEvent(event);
+						} catch(ex) {
+							console.log('ERROR!! ' + ex);
+						 }
+                     } else {
 						self.dispatchEvent(event);
 					}
                 }, 0, self);
