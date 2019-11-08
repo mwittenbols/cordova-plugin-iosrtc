@@ -154,17 +154,14 @@
             var originalMediaStream = window.MediaStream;
             // Added 2019-10-08 by ROGDEV\Manfred:
             if (typeof originalMediaStream === "undefined") {
-				var
-				YaetiEventTarget = _dereq_('yaeti').EventTarget;
-                originalMediaStream = function () { YaetiEventTarget.call(this); };
+				
+                originalMediaStream = function () {  };
 
             }
             var originalMediaStreamTrack = MediaStreamTrack.originalMediaStreamTrack;
             // Added 2019-10-08 by ROGDEV\Manfred:
             if (typeof originalMediaStreamTrack === "undefined") {
-				var
-				YaetiEventTarget = _dereq_('yaeti').EventTarget;
-                originalMediaStreamTrack = function () { YaetiEventTarget.call(this); };
+				 originalMediaStreamTrack = function () {  };
 
             }
             /**
@@ -471,13 +468,10 @@
 
                     //HACK 2019-11-07 by ROGDEV:
                     if (typeof self.dispatchEvent === "undefined") {
-						//Object.defineProperties(self.prototype, Object.getOwnPropertyDescriptors(EventTarget.prototype));
-						var
-						YaetiEventTarget = _dereq_('yaeti').EventTarget;
-						self.dispatchEvent = YaetiEventTarget.prototype.dispatchEvent;
-                    }
-
-                    self.dispatchEvent(event);
+						window.alert('self.dispatchEvent does not exist');
+                    } else {
+						self.dispatchEvent(event);
+					}
                 }, 0, self);
             };
 
@@ -1028,10 +1022,9 @@
             var originalMediaStreamTrack = window.MediaStreamTrack;
             // Added 2019-10-08 by ROGDEV\Manfred:
             if (typeof originalMediaStreamTrack === "undefined") {
-				var
-				YaetiEventTarget = _dereq_('yaeti').EventTarget;
+
 				originalMediaStreamTrack = function () {
-                    YaetiEventTarget.call(this);
+                   
                 };
 
             }
