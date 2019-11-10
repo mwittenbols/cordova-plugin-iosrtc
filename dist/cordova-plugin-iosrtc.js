@@ -3015,8 +3015,8 @@
                         // HTML video element.
                         video = mutation.target;
 
-                        // .src removed.
-                        if (!video.src) {
+                        // .srcObject removed.
+                        if (!video.srcObject) {
                             // If this video element was previously handling a MediaStreamRenderer, release it.
                             releaseMediaStreamRenderer(video);
                             continue;
@@ -3143,11 +3143,11 @@
 
                 // If the video already has a srcObject property but is not yet handled by the plugin
                 // then handle it now.
-                if ((video.src) && !video._iosrtcMediaStreamRendererId) {
+                if ((video.srcObject) && !video._iosrtcMediaStreamRendererId) {
                     handleVideo(video);
                 }
 
-                // Add .src observer to the video element.
+                // Add .srcObject observer to the video element.
                 videoObserver.observe(video, {
                     // Set to true if additions and removals of the target node's child elements (including text
                     // nodes) are to be observed.
@@ -3167,20 +3167,20 @@
                     // Set to an array of attribute local names (without namespace) if not all attribute mutations
                     // need to be observed.
                     // srcObject DO not trigger MutationObserver
-                    attributeFilter: ['src']
+                    attributeFilter: ['srcObject']
                 });
 
                 // MutationObserver fail to trigger when using srcObject on ony tested browser.
-                // But video.src = new MediaStream() will trigger onloadstart and
-                // video.src = null will trigger onemptied events.
+                // But video.srcObject = new MediaStream() will trigger onloadstart and
+                // video.srcObject = null will trigger onemptied events.
 
                 video.addEventListener('loadstart', function () {
-                    if (video.src && !video._iosrtcMediaStreamRendererId) {
+                    if (video.srcObject && !video._iosrtcMediaStreamRendererId) {
                         // If this video element was NOT previously handling a MediaStreamRenderer, release it.
                         handleVideo(video);
-                    } else if (video.src && video._iosrtcMediaStreamRendererId) {
+                    } else if (video.srcObject && video._iosrtcMediaStreamRendererId) {
                         // The video element has received a new srcObject.
-                        var stream = video.src;
+                        var stream = video.srcObject;
                         if (stream && typeof stream.getBlobId === 'function') {
                             // Release previous renderer
                             releaseMediaStreamRenderer(video);
@@ -3191,7 +3191,7 @@
                 });
 
                 video.addEventListener('emptied', function () {
-                    if (!video.src && video._iosrtcMediaStreamRendererId) {
+                    if (!video.srcObject && video._iosrtcMediaStreamRendererId) {
                         // If this video element was previously handling a MediaStreamRenderer, release it.
                         releaseMediaStreamRenderer(video);
                     }
@@ -3207,9 +3207,9 @@
                 var
                     stream;
 
-                // The app has set video.src.
-                if (video.src) {
-                    stream = video.src;
+                // The app has set video.srcObject.
+                if (video.srcObject) {
+                    stream = video.srcObject;
                     if (stream && typeof stream.getBlobId === 'function') {
 
                         if (!stream.getBlobId()) {
